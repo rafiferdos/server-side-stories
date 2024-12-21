@@ -1,22 +1,26 @@
 import { Router } from 'express'
+import { AdminRoutes } from '../modules/admin/admin.route'
+import { AuthRoutes } from '../modules/Auth/auth.routes'
+import { BlogRoutes } from '../modules/blog/blog.route'
+import { userRoutes } from '../modules/user/user.route'
 
 const router = Router()
 
 const moduleRoutes = [
   {
-    path: "/auth/register",
+    path: '/auth/register',
     route: userRoutes,
   },
   {
-    path: "/auth/login",
+    path: '/auth/login',
     route: AuthRoutes,
   },
   {
-    path: "/blogs",
-    route: blogRoutes,
+    path: '/blogs',
+    route: BlogRoutes,
   },
   {
-    path: "/admin",
+    path: '/admin',
     route: AdminRoutes,
   },
 ]
