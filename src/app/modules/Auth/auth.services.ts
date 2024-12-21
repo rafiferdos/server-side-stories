@@ -1,5 +1,5 @@
-import { Jwt } from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import Jwt from 'jsonwebtoken'
 import config from '../../config'
 import AppError from '../../errors/AppError'
 import { userModel } from '../user/user.model'
