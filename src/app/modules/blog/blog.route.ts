@@ -1,22 +1,19 @@
-import { Router } from 'express'
+import express from 'express'
+import auth from '../../middlewares/auth'
 import { validateRequest } from '../../middlewares/validateRequest'
-import { BlogController } from './blog.controller'
-import { createBlogZodSchema, updateBlogZodSchema } from './blog.validation'
-
-const router = Router()
+import { blogControllers } from './blog.controller'
+import { blogValidations } from './blog.validation'
+const router = express.Router()
 
 router.post(
   '/',
-  validateRequest(createBlogZodSchema),
-  BlogController.createBlog,
+  auth(),
+  validateRequest(blogValidations.blogValidationSchema),
+  blogControllers.createBlog,
 )
-router.get('/', BlogController.getAllBlogs)
-router.get('/:id', BlogController.getBlogById)
-router.patch(
-  '/:id',
-  validateRequest(updateBlogZodSchema),
-  BlogController.updateBlog,
-)
-router.delete('/:id', BlogController.deleteBlog)
+router.get('/', blogControllers.getAllBlog)
+router.get('/:id', blogControllers.getSingleBlog)
+router.delete('/:id', auth(), blogControllers.deleteBlog)
+router.patch('/:id', auth(), blogControllers.updateBlog)
 
-export const BlogRoutes = router
+export const blogRoutes = router

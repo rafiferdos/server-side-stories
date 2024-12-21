@@ -8,7 +8,19 @@ const blogSchema = new Schema<IBlog>(
     author: { type: Schema.Types.String, ref: 'User', required: true },
     isPublished: { type: Boolean, default: true },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    toJSON: {
+      transform: function (_doc, ret) {
+        delete ret.__v
+        delete ret.isPublished
+        delete ret.isDeleted
+        delete ret.createdAt
+        delete ret.updatedAt
+        delete ret.__v
+      },
+    },
+  },
 )
 
-export const Blog = model<IBlog>('Blog', blogSchema)
+export const blogModel = model<IBlog>('blogs', blogSchema)
