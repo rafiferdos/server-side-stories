@@ -1,9 +1,7 @@
 import { RequestHandler } from 'express'
-import AppError from '../../errors/AppError'
 import { AuthServices } from './auth.services'
 
-//Login User
-const loginUser: RequestHandler = async (req, res) => {
+const loginUser: RequestHandler = async (req, res, next) => {
   try {
     const result = await AuthServices.loginUser(req.body)
 
@@ -16,12 +14,7 @@ const loginUser: RequestHandler = async (req, res) => {
       },
     })
   } catch (error) {
-    // next(error);
-    if (error instanceof Error) {
-      throw new AppError(401, error.message)
-    } else {
-      throw new AppError(401, String(error))
-    }
+    next(error)
   }
 }
 
