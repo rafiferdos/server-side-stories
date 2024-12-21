@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
-import { config } from 'dotenv'
 import { ErrorRequestHandler } from 'express'
 import { ZodError } from 'zod'
+import config from '../config'
 import AppError from '../errors/AppError'
 import handleCastError from '../errors/handleCastError'
 import handleDuplicateError from '../errors/handleDuplicateErrror'
