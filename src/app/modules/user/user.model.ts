@@ -16,7 +16,7 @@ const userSchema = new Schema<TUser>(
     password: {
       type: String,
       required: [true, 'Password Must be required'],
-      maxlength: [10, 'Password can not be more than 10 character'],
+      maxlength: [20, 'Password can not be more than 20 character'],
     },
     role: {
       type: String,
@@ -48,6 +48,7 @@ const userSchema = new Schema<TUser>(
 
 //Pre Document middleware for Bycript Password
 userSchema.pre('save', async function (next) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this
   user.password = await bcrypt.hash(
     user.password,
