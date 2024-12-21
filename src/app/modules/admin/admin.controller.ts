@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RequestHandler } from 'express'
+import AppError from '../../errors/AppError'
 import { adminServices } from './admin.services'
 
 //make user blocked
 const makeUserBlockByAdmin: RequestHandler = async (req, res, next) => {
   try {
     const userId = req.params.userId
-    const result = await adminServices.makeUserBlockedIntoDBByAdmin(
-      userId,
-      req.body,
-    )
+    const result = await adminServices.makeUserBlockedIntoDBByAdmin(userId)
+
+    if (!result) {
+      throw new AppError(400, 'Failed to block user')
+    }
 
     res.status(200).json({
       success: true,
@@ -19,7 +22,6 @@ const makeUserBlockByAdmin: RequestHandler = async (req, res, next) => {
     next(error)
   }
 }
-
 //Delete Blog
 const deleteBlogByAdmin: RequestHandler = async (req, res, next) => {
   try {
