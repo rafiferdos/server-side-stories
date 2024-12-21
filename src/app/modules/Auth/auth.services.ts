@@ -1,4 +1,4 @@
-import { Jwt } from 'jsonwebtoken';
+import { Jwt } from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import config from '../../config'
 import AppError from '../../errors/AppError'

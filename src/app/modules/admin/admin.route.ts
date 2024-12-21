@@ -1,14 +1,14 @@
-import express from "express";
-import { adminControllers } from "./admin.controller";
-import auth from "../../middlewares/auth";
+import express from 'express'
+import { adminControllers } from './admin.controller'
+import auth from '../../middlewares/auth'
 
-const router = express.Router();
+const router = express.Router()
 
-router.delete("/blogs/:id", auth("admin"), adminControllers.deleteBlogByAdmin);
+router.delete('/blogs/:id', auth('admin'), adminControllers.deleteBlogByAdmin)
 router.patch(
-  "/users/:userId/block",
-  auth("admin"),
-  adminControllers.makeUserBlockByAdmin
-);
+  '/users/:userId/block',
+  auth('admin'),
+  adminControllers.makeUserBlockByAdmin,
+)
 
-export const AdminRoutes = router;
+export const AdminRoutes = router
