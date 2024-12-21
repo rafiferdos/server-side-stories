@@ -16,4 +16,4 @@ router.get('/:id', blogControllers.getSingleBlog)
 router.delete('/:id', auth(), blogControllers.deleteBlog)
 router.patch('/:id', auth(), blogControllers.updateBlog)
 
-export const blogRoutes = router
+export const BlogRoutes = router
